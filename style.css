@@ -1,0 +1,323 @@
+/* style.css - Ver.2.4 Clean Design */
+
+/* === 全体スタイル === */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 10px;
+  /* スマホでのダブルタップ拡大防止 */
+  touch-action: manipulation; 
+  color: #333;
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+/* === タイマー・CCF表示 === */
+.timer-display {
+  margin: 10px 0 20px 0;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 影を薄く上品に */
+}
+
+/* CCF（圧迫率）を巨大化・フラット化 */
+#rate {
+  font-size: 3.5rem; /* かなり大きく */
+  font-weight: 800;
+  color: #d32f2f;    /* 警告色（赤） */
+  margin-bottom: 5px;
+  line-height: 1;
+}
+
+.sub-timers {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 1rem;
+  color: #777; /* 少し薄くして主役（CCF）を邪魔しない */
+  font-variant-numeric: tabular-nums; /* 数字の幅を等幅に */
+}
+
+/* === ボタン共通スタイル === */
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.1s;
+  /* スマホでタップしやすく */
+  min-height: 48px; 
+  font-weight: bold;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  background-color: #e0e0e0 !important;
+  color: #999 !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+/* === 操作ボタンエリア（メイン） === */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 10px auto;
+  max-width: 400px;
+}
+
+/* 胸骨圧迫ボタン（最重要） */
+#button-cc {
+  font-size: 1.6rem;
+  padding: 24px;
+  color: white;
+  /* 色はJSで制御されますが、初期ベースを持たせる */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* 傷病者接触ボタン */
+#button-cpr {
+  color: white;
+  font-size: 1.1rem;
+}
+
+/* リセットボタン */
+#button-reset {
+  background-color: #78909C; /* 落ち着いたブルーグレー */
+  color: white;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  align-self: flex-end; /* 右寄せ */
+  margin-bottom: -5px;
+  min-height: auto;
+}
+
+/* === ログ記録ボタン（グリッド） === */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3列 */
+  gap: 12px; /* ボタン同士の間隔を少し広げる */
+  margin: 10px auto;
+  max-width: 600px;
+}
+
+.button-grid button {
+  padding: 15px 5px;
+  font-size: 1rem;       /* 文字を少し大きく */
+  font-weight: bold;     /* 文字を太くして読みやすく */
+  
+  /* ★ここが配色の変更点★ */
+  background-color: #ffffff;  /* 背景を真っ白に */
+  color: #333333;             /* 文字を濃いグレー（ほぼ黒）に */
+  border: 2px solid #ddd;     /* 枠線を少し太めにつける */
+  border-radius: 8px;         /* 角を丸く */
+  box-shadow: 0 2px 0 rgba(0,0,0,0.05); /* ほんの少し立体感 */
+}
+
+/* 押した時の見た目 */
+.button-grid button:active {
+  background-color: #eee;     /* 押した時だけ少しグレーに */
+  border-color: #bbb;
+  transform: translateY(2px); /* 押し込む動き */
+  box-shadow: none;
+}
+
+/* === 自由記述・音声入力 === */
+.custom-log {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 15px auto;
+  max-width: 600px;
+}
+
+.custom-log input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+/* マイクボタン：普段は地味に */
+#btn-mic {
+  background-color: #e0e0e0;
+  color: #555;
+  font-size: 1.4rem;
+  padding: 0;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 記録ボタン：落ち着いた色 */
+#btn-record-custom {
+  background-color: #546E7A;
+  color: white;
+  width: 70px;
+  font-size: 0.9rem;
+}
+
+/* === 設定ボタン（目立たなくする） === */
+#btn-open-settings {
+  background-color: transparent;
+  color: #999;
+  border: 1px dashed #ccc;
+  width: auto;
+  display: block;
+  margin: 20px auto 10px;
+  font-size: 0.8rem;
+  font-weight: normal;
+  padding: 8px 15px;
+  min-height: auto;
+}
+
+#btn-open-settings:hover {
+  border-color: #999;
+  color: #666;
+}
+
+/* === グラフ === */
+.chart-wrapper {
+  position: relative;
+  height: 250px; /* 少し高さを抑える */
+  width: 100%;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* === ログ表示エリア === */
+#log_interruption {
+  margin: 10px auto 30px;
+  text-align: left;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  max-width: 600px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.log-entry {
+  border-bottom: 1px solid #f9f9f9;
+  padding: 4px 0;
+}
+
+/* CSVダウンロードボタン */
+#button-download-csv {
+  background-color: #90A4AE;
+  color: white;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+  min-height: auto;
+}
+
+/* === 設定モーダルウィンドウ === */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0,0,0,0.4); 
+  backdrop-filter: blur(2px); /* 背景をぼかす */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 25px;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+#settings-inputs-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+  max-height: 300px;
+  overflow-y: auto; /* 設定項目が多くてもスクロール可能に */
+}
+
+#settings-inputs-container input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fcfcfc;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-actions button {
+  width: 100%;
+  margin: 0;
+}
+
+#btn-save-settings {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* ダウンロードボタンを横並びにする */
+.download-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* グラフ保存ボタン（CSVボタンと同じようなスタイルで調整） */
+#button-download-chart {
+  color: white;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+  min-height: auto;
+}

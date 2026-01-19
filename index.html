@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCF測定アプリ Ver.3</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+</head>
+<body>
+
+  <h1>CCF測定アプリ Ver.3</h1>
+
+  <div class="timer-display">
+    <div id="rate">CCF: 0%</div>
+    <div class="sub-timers">
+      <div id="time_cpr">CPR時間: 00:00.0</div>
+      <div id="time_cc">圧迫時間: 00:00.0</div>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button id="button-reset">リセット</button>
+    <button id="button-cc" class="btn-start" disabled>胸骨圧迫</button>
+    <button id="button-cpr">傷病者接触</button>
+  </div>
+
+  <h2>処置ログ</h2>
+  
+  <div class="custom-log">
+    <input type="text" id="customLogInput" placeholder="自由記入 (音声可)">
+    <button id="btn-mic" title="音声入力">🎤</button>
+    <button id="btn-record-custom">記録</button>
+  </div>
+
+  <div class="button-grid" id="dynamic-button-grid">
+    </div>
+
+  <button id="btn-open-settings" style="background-color: #607D8B; margin-top: 10px; font-size: 0.8rem; padding: 10px;">⚙️ ボタン名を編集</button>
+
+  <h2>CCF 推移グラフ</h2>
+  <div class="chart-wrapper">
+    <canvas id="ccfChart"></canvas>
+  </div>
+
+  <h2>ログ出力</h2>
+  
+  <div class="download-group">
+    <button id="button-download-csv">CSVダウンロード</button> 
+    <button id="button-download-chart" style="background-color: #0288D1;">グラフ画像を保存</button>
+  </div>
+  
+  <div id="log_interruption"></div>
+
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <h3>ボタン名称の編集</h3>
+      <div id="settings-inputs-container">
+        </div>
+      <div class="modal-actions">
+        <button id="btn-save-settings">保存して閉じる</button>
+        <button id="btn-cancel-settings" style="background-color: #999;">キャンセル</button>
+        <button id="btn-reset-defaults" style="background-color: #d32f2f;">初期値に戻す</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
